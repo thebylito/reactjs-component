@@ -1,18 +1,65 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { SortableContainer, SortableElement } from 'react-sortable-hoc';
+import DragSortableList from 'react-drag-sortable';
 
-const SortableItem = SortableElement(({ value }) => <li>{value}</li>);
-
-const SortableList = SortableContainer(({ items }) => {
-  return (
-    <ul>
-      {items.map((value, index) => (
-        <SortableItem key={`item-${index}`} index={index} value={value} />
-      ))}
-    </ul>
-  );
-});
+const list = [
+  {
+    content: (
+      <img
+        style={{ width: 350, height: 350 }}
+        src="https://placeimg.com/350/351/any"
+      />
+    ),
+  },
+  {
+    content: (
+      <img
+        style={{ width: 350, height: 350 }}
+        src="https://placeimg.com/350/352/any"
+      />
+    ),
+  },
+  {
+    content: (
+      <img
+        style={{ width: 350, height: 350 }}
+        src="https://placeimg.com/350/353/any"
+      />
+    ),
+  },
+  {
+    content: (
+      <img
+        style={{ width: 350, height: 350 }}
+        src="https://placeimg.com/350/354/any"
+      />
+    ),
+  },
+  {
+    content: (
+      <img
+        style={{ width: 350, height: 350 }}
+        src="https://placeimg.com/350/355/any"
+      />
+    ),
+  },
+  {
+    content: (
+      <img
+        style={{ width: 350, height: 350 }}
+        src="https://placeimg.com/350/350/any"
+      />
+    ),
+  },
+  {
+    content: (
+      <img
+        style={{ width: 350, height: 350 }}
+        src="https://placeimg.com/350/356/any"
+      />
+    ),
+  },
+];
 
 class LikeButton extends React.Component {
   constructor(props) {
@@ -29,7 +76,14 @@ class LikeButton extends React.Component {
   };
 
   render() {
-    return <SortableList items={this.state.items} onSortEnd={this.onSortEnd} />;
+    return (
+      <DragSortableList
+        items={list}
+        dropBackTransitionDuration={0.3}
+        onSort={(e) => false}
+        type="grid"
+      />
+    );
   }
 }
 
